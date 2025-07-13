@@ -1,10 +1,148 @@
+"use client";
+
 import AuthGuard from "@/components/auth/auth-guard";
+import { Button } from "@/components/ui/button";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
+
+const traits = [
+    {
+        id: "problem_solver",
+        name: "Problem Solver",
+        fields: ["Software", "Marketing", "Data"],
+    },
+    { id: "market_insight", name: "Market Insight", fields: ["Marketing"] },
+    { id: "data_thinking", name: "Data Thinking", fields: ["Data"] },
+    {
+        id: "efficiency_focus",
+        name: "Efficiency Focus",
+        fields: ["Software", "Data"],
+    },
+    { id: "communicator", name: "Communicator", fields: ["Data", "Marketing"] },
+    { id: "logical_mind", name: "Logical Mind", fields: ["Data", "Software"] },
+    { id: "trend_watcher", name: "Trend Watcher", fields: ["Marketing"] },
+    { id: "pattern_seeker", name: "Pattern Seeker", fields: ["Data"] },
+    { id: "tech_curious", name: "Tech Curious", fields: ["Data", "Software"] },
+    { id: "creative_thinker", name: "Creative Thinker", fields: ["Marketing"] },
+    { id: "builder", name: "Builder", fields: ["Software"] },
+    {
+        id: "decision_maker",
+        name: "Decision Maker",
+        fields: ["Data", "Marketing"],
+    },
+];
+
 export default function QuizPage() {
+    const router = useRouter();
+    const [selectedTraits, setSelectedTraits] = useState<string[]>([]);
+    const [name, setName] = useState("");
+    const [age, setAge] = useState("");
+    const [status, setStatus] = useState("");
+
+    const toggleTrait = (id: string) => {
+        setSelectedTraits((prev) =>
+            prev.includes(id) ? prev.filter((t) => t !== id) : [...prev, id]
+        );
+    };
+
+    const handleSubmit = () => {
+        if (!name || !status || selectedTraits.length < 5) {
+            alert("Lengkapi data diri dan pilih minimal 5 karakteristik.");
+            return;
+        }
+
+        const scores: Record<string, number> = {
+            Marketing: 0,
+            Software: 0,
+            Data: 0,
+        };
+
+        selectedTraits.forEach((id) => {
+            const trait = traits.find((t) => t.id === id);
+            if (trait) {
+                trait.fields.forEach((f) => {
+                    scores[f]++;
+                });
+            }
+        });
+
+        const recommendedField = Object.keys(scores).reduce((a, b) =>
+            scores[a] > scores[b] ? a : b
+        );
+
+        // Simpan data ke localStorage
+        localStorage.setItem("fieldScores", JSON.stringify(scores));
+        localStorage.setItem("recommendedField", recommendedField);
+        localStorage.setItem(
+            "userProfile",
+            JSON.stringify({ name, age, status })
+        );
+
+        router.push("/quiz/role");
+    };
+
     return (
         <AuthGuard>
-            <div className="h-64 flex justify-center items-center bg-green-200 rounded-lg shadow-md">
-                <div className="bg-green-500 text-white p-8 rounded-lg text-center">
-                    <p>analyz start begin</p>
+            <div className="container flex flex-col gap-20 mt-20 items-center ounded-lg  max-w-7xl py-20 mx-auto px-6 sm:px-6 lg:px-8">
+
+                {/* Form Data Diri */}
+                <div className="w-full max-w-md space-y-4">
+                    <input
+                        type="text"
+                        placeholder="Nama"
+                        value={name}
+                        onChange={(e) => setName(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg"
+                    />
+                    
+                    <select
+                        value={status}
+                        onChange={(e) => setStatus(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg"
+                    >
+                        <option value="">Pilih Status</option>
+                        <option value="Software Engineer">
+                            Software Engineer
+                        </option>
+                        <option value="Digital Marketing">
+                            Digital Marketing
+                        </option>
+                        <option value="Data Analytics">Data Analytics</option>
+                        <option value="Mahasiswa/Pelajar">
+                            Mahasiswa/Pelajar
+                        </option>
+                    </select>
+                </div>
+
+                <div className="text-center">
+                    <h1 className="text-xl font-bold mb-2">
+                        Pilih karakteristik yang menggambarkan dirimu
+                    </h1>
+                    <p className="text-sm text-gray-500 max-w-lg mx-auto">
+                        Minimal 5 yang dipilih yaa
+                    </p>
+                </div>
+                {/* Pilihan Karakteristik */}
+                <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
+                    {traits.map((trait) => (
+                        <Button
+                            key={trait.id}
+                            onClick={() => toggleTrait(trait.id)}
+                            variant={
+                                selectedTraits.includes(trait.id)
+                                    ? "default"
+                                    : "outline"
+                            }
+                        >
+                            {trait.name}
+                        </Button>
+                    ))}
+                </div>
+
+                <div className="mt-4">
+                    <Button onClick={handleSubmit}>
+                        Lihat Rekomendasi Bidang
+                    </Button>
                 </div>
             </div>
         </AuthGuard>

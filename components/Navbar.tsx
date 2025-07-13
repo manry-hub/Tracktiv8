@@ -32,7 +32,7 @@ export default function Navbar() {
                             <div className="h-8 w-20 animate-pulse bg-muted rounded" />
                         ) : user ? (
                             <div className="flex items-center space-x-4">
-                                <div className="flex items-center space-x-2">
+                                <div className="sm:flex items-center space-x-2 hidden">
                                     <User className="h-4 w-4" />
                                     <span className="text-sm">
                                         {user.email}
