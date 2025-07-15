@@ -1,13 +1,14 @@
-stack zustand + firestore
+ui -> responsif
+	quiz (field, role, course)
+	result (field, role, course)
+	dashboard (summary dan cetak pdf)
+	
+navigasi
 
-quiz fase 1
-output fase 1
-quiz fase 2
-output fase 2
-quiz fase 3
-output fase 3
-summary
+tombol pop up ai
 
-responsif mobile X
-ibm watson x
-bikin readme.md
+tombol reset data
+
+bikin readme
+
+bikin ppt

@@ -103,6 +103,7 @@ export default function QuizRolePage() {
                     </div>
                 ))}
             </div>
+           
         </div>
     );
 }

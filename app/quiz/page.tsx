@@ -36,7 +36,6 @@ export default function QuizPage() {
     const router = useRouter();
     const [selectedTraits, setSelectedTraits] = useState<string[]>([]);
     const [name, setName] = useState("");
-    const [age, setAge] = useState("");
     const [status, setStatus] = useState("");
 
     const toggleTrait = (id: string) => {
@@ -75,7 +74,7 @@ export default function QuizPage() {
         localStorage.setItem("recommendedField", recommendedField);
         localStorage.setItem(
             "userProfile",
-            JSON.stringify({ name, age, status })
+            JSON.stringify({ name, status })
         );
 
         router.push("/quiz/role");

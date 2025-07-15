@@ -66,8 +66,8 @@ export default function Home() {
     };
 
     return (
-        <div className="mt-10">
-            <main className="max-w-3xl mx-auto p-6 mb-5">
+        <div className="mt-5">
+            <main className="max-w-4xl mx-auto px-4 md:px-6 pb-32">
                 <div className="flex items-center mb-5">
                     <Image
                         src="https://upload.wikimedia.org/wikipedia/commons/b/bd/IBM_granite_2_cubes_logo.svg"
@@ -75,18 +75,17 @@ export default function Home() {
                         width={50}
                         height={50}
                     />
-
                     <h1 className="text-2xl font-bold ml-2">IBM Granite AI</h1>
                 </div>
 
-                <div className="space-y-4 mb-6">
+                <div className="space-y-4 mb-6 flex flex-col">
                     {messages.map((msg, i) => (
                         <div
                             key={i}
-                            className={`p-3 rounded max-w-[80%] ${
+                            className={`p-3 rounded max-w-[80%] break-words ${
                                 msg.role === "user"
-                                    ? "bg-blue-500 text-white self-end ml-auto"
-                                    : "bg-gray-200 text-black self-start mr-auto"
+                                    ? "bg-blue-500 text-white self-end"
+                                    : "bg-gray-200 text-black self-start"
                             }`}
                         >
                             {msg.content}
@@ -98,24 +97,29 @@ export default function Home() {
                         </div>
                     )}
                 </div>
+            </main>
 
-                <form onSubmit={handleSend} className="flex flex-col mt-10">
+            {/* Input Form */}
+            <form
+                onSubmit={handleSend}
+                className="container mx-auto fixed bottom-0 inset-x-0  bg-white pb-10 p-4 "
+            >
+                <div className="max-w-4xl mx-auto flex flex-col space-y-2">
                     <textarea
-                        className="w-full p-2 rounded text-sm"
-                        rows={2}
-                        placeholder="Arahkan ai, misalnya: 'kamu adalah ahli software engineer'"
-                        value={systemPrompt}
-                        onChange={(e) => setSystemPrompt(e.target.value)}
+                        className="w-full p-2 border rounded"
+                        rows={3}
+                        placeholder="Contoh: Apa saja tugas dari software engineer"
+                        value={prompt}
+                        onChange={(e) => setPrompt(e.target.value)}
                     />
-                    <div className="flex flex-row">
+                    <div className="flex flex-col md:flex-row gap-2">
                         <textarea
-                            className="w-full p-2 border rounded"
-                            rows={3}
-                            placeholder="Contoh: Apa saja tugas dari software engineer"
-                            value={prompt}
-                            onChange={(e) => setPrompt(e.target.value)}
+                            className="w-full p-2 rounded text-sm border border-gray-300"
+                            rows={2}
+                            placeholder="Arahkan ai, misalnya: 'kamu adalah ahli software engineer'"
+                            value={systemPrompt}
+                            onChange={(e) => setSystemPrompt(e.target.value)}
                         />
-
                         <button
                             type="submit"
                             className="bg-black text-white px-4 py-2 rounded"
@@ -124,15 +128,8 @@ export default function Home() {
                             {loading ? "Menjawab..." : "Kirim"}
                         </button>
                     </div>
-                    <button
-                        type="submit"
-                        className="bg-orange-400 text-white px-4 py-2 rounded"
-                        disabled={loading}
-                    >
-                        {loading ? "Menjawab..." : "Akhiri percakapan"}
-                    </button>
-                </form>
-            </main>
+                </div>
+            </form>
         </div>
     );
 }
