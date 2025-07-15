@@ -40,10 +40,9 @@ export default function QuizRolePage() {
     return (
         <div className="min-h-screen flex flex-col items-center justify-center gap-10 text-black px-4 py-10">
             <h1 className="text-3xl md:text-4xl font-semibold text-center">
-                Your Field Is
+                Bidang Kamu
             </h1>
 
-            {/* Lingkaran */}
             <div className="flex flex-col md:flex-row items-center justify-center gap-4 flex-wrap">
                 {fields.map((field, idx) => (
                     <div
@@ -64,7 +63,7 @@ export default function QuizRolePage() {
                                 cy="100"
                             />
                             <circle
-                                className="text-blue-500 transition-all duration-1000"
+                                className="text-orange-400 transition-all duration-1000"
                                 stroke="currentColor"
                                 strokeWidth="10"
                                 fill="transparent"

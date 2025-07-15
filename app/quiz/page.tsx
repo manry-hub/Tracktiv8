@@ -24,7 +24,7 @@ const traits = [
     { id: "pattern_seeker", name: "Pattern Seeker", fields: ["Data"] },
     { id: "tech_curious", name: "Tech Curious", fields: ["Data", "Software"] },
     { id: "creative_thinker", name: "Creative Thinker", fields: ["Marketing"] },
-    { id: "builder", name: "Builder", fields: ["Software"] },
+    { id: "builder", name: "Software Builder", fields: ["Software"] },
     {
         id: "decision_maker",
         name: "Decision Maker",
@@ -69,7 +69,6 @@ export default function QuizPage() {
             scores[a] > scores[b] ? a : b
         );
 
-        // Simpan data ke localStorage
         localStorage.setItem("fieldScores", JSON.stringify(scores));
         localStorage.setItem("recommendedField", recommendedField);
         localStorage.setItem(
@@ -82,10 +81,18 @@ export default function QuizPage() {
 
     return (
         <AuthGuard>
-            <div className="container flex flex-col gap-20 mt-20 items-center ounded-lg  max-w-7xl py-20 mx-auto px-6 sm:px-6 lg:px-8">
-
+            <div className="container flex flex-col gap-10 mt-20 items-center ounded-lg  max-w-7xl py-10 mx-auto px-6 sm:px-6 lg:px-8">
+                
                 {/* Form Data Diri */}
-                <div className="w-full max-w-md space-y-4">
+                <div className="text-center">
+                    <h1 className="text-xl font-bold mb-2">
+                        Pilih karakteristik yang menggambarkan dirimu
+                    </h1>
+                    <p className="text-sm text-gray-500 max-w-lg mx-auto">
+                        Minimal 5 ciri khas yang dipilih yaa
+                    </p>
+                </div>
+                <div className="w-full max-w-2xl space-y-4">
                     <input
                         type="text"
                         placeholder="Nama"
@@ -93,11 +100,11 @@ export default function QuizPage() {
                         onChange={(e) => setName(e.target.value)}
                         className="w-full px-4 py-2 border rounded-lg"
                     />
-                    
+
                     <select
                         value={status}
                         onChange={(e) => setStatus(e.target.value)}
-                        className="w-full px-4 py-2 border rounded-lg"
+                        className="w-full px-4 py-2 border rounded-lg bg-white"
                     >
                         <option value="">Pilih Status</option>
                         <option value="Software Engineer">
@@ -113,15 +120,7 @@ export default function QuizPage() {
                     </select>
                 </div>
 
-                <div className="text-center">
-                    <h1 className="text-xl font-bold mb-2">
-                        Pilih karakteristik yang menggambarkan dirimu
-                    </h1>
-                    <p className="text-sm text-gray-500 max-w-lg mx-auto">
-                        Minimal 5 yang dipilih yaa
-                    </p>
-                </div>
-                {/* Pilihan Karakteristik */}
+
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
                     {traits.map((trait) => (
                         <Button
@@ -129,9 +128,10 @@ export default function QuizPage() {
                             onClick={() => toggleTrait(trait.id)}
                             variant={
                                 selectedTraits.includes(trait.id)
-                                    ? "default"
+                                    ? "destructive"
                                     : "outline"
                             }
+                            
                         >
                             {trait.name}
                         </Button>
@@ -140,7 +140,7 @@ export default function QuizPage() {
 
                 <div className="mt-4">
                     <Button onClick={handleSubmit}>
-                        Lihat Rekomendasi Bidang
+                        Lihat Rekomendasi Role
                     </Button>
                 </div>
             </div>

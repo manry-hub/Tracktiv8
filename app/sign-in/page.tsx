@@ -1,6 +1,6 @@
 import SignInForm from "@/components/auth/sign-in-form";
 import Link from "next/link";
-import Image from "next/image";
+
 export default function SignInPage() {
     return (
         <div className="space-y-6 mt-20 md:mt-40">

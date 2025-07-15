@@ -28,7 +28,7 @@ export default function RoleDetailPage() {
         if (nextStep < quiz.questions.length) {
             setStep(nextStep);
         } else {
-            // Simpan hasil akhir ke localStorage
+            
             localStorage.setItem(
                 `role_result_${slug}`,
                 JSON.stringify(newScores)
@@ -36,8 +36,7 @@ export default function RoleDetailPage() {
             router.push(`/quiz/role/${slug}/result`);
         }
     };
-    // Ganti menjadi:
-    
+
     const question = quiz.questions[step];
 
     return (
