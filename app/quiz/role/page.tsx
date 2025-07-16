@@ -39,7 +39,7 @@ export default function QuizRolePage() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center gap-10 text-black px-4 py-10">
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent text-center">
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent text-center mt-20">
                 Bidang Kamu
             </h1>
 
@@ -47,7 +47,8 @@ export default function QuizRolePage() {
                 {fields.map((field, idx) => (
                     <div
                         key={idx}
-                        className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center" data-aos="flip-left "
+                        className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center"
+                        data-aos="flip-left "
                     >
                         <svg
                             className="absolute top-0 left-0 w-full h-full"

@@ -22,7 +22,7 @@ export default function RoleResultPage() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center gap-10 px-4 py-10">
-            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent text-center text-black">
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent text-center text-black mt-10">
                 Hasil Penilaian Role
             </h1>
 
@@ -34,7 +34,8 @@ export default function RoleResultPage() {
                     return (
                         <div
                             key={idx}
-                            className="relative bg-white border rounded-xl shadow-md w-64 h-40 p-4 flex flex-col justify-center items-center" data-aos="flip-left"
+                            className="relative bg-white border rounded-xl shadow-md w-64 h-40 p-4 flex flex-col justify-center items-center"
+                            data-aos="flip-left"
                         >
                             <span className="text-lg font-semibold capitalize text-gray-800">
                                 {key}
