@@ -8,7 +8,7 @@ export default function QuizLayout({
 }>) {
     return (
         <QuizProvider>
-            <div className="">
+            <div >
                 {/* Progress bar bisa di sini */}
                 {children}
                 <Toaster />

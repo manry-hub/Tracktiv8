@@ -146,8 +146,7 @@ export default function Benefits() {
                         </div>
 
                         <div
-                            data-aos="fade-left"
-                            data-aos-delay="400"
+                           
                             className="glassmorphism-light rounded-2xl p-8 text-center"
                         >
                             <div className="w-32 h-32 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full mx-auto mb-6 flex items-center justify-center">

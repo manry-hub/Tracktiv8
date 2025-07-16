@@ -28,7 +28,11 @@ export default function Navbar() {
                 <div className="container flex h-14 items-center">
                     <div className="mr-4 flex items-center gap-2">
                         <Image
-                        src="/icon-tracktiv8.png" alt="icon-tracktiv" width={50} height={50}/>
+                            src="/icon-tracktiv8.png"
+                            alt="icon-tracktiv"
+                            width={50}
+                            height={50}
+                        />
                         <Link href="/">
                             <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
                                 Tracktiv8
@@ -44,10 +48,9 @@ export default function Navbar() {
                                 <div className="sm:flex items-center space-x-2 hidden">
                                     <User className="h-4 w-4" />
                                     <Link href="/dashboard">
-                                    
-                                    <span className="text-sm">
-                                        {user.email}
-                                    </span>
+                                        <span className="text-sm">
+                                            {user.email}
+                                        </span>
                                     </Link>
                                 </div>
                                 <Button
@@ -62,16 +65,13 @@ export default function Navbar() {
                             </div>
                         ) : (
                             <div className="flex items-center space-x-2">
-                                <Button variant="ghost" size="sm" asChild>
+                                <Button
+                                    variant="outline"
+                                    className="hover:bg-orange-400 hover:text-white"
+                                    size="sm"
+                                    asChild
+                                >
                                     <Link href="/sign-in">Sign In</Link>
-                                </Button>
-                                <Button size="sm" asChild>
-                                    <Link
-                                        className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white"
-                                        href="/sign-up"
-                                    >
-                                        Sign Up
-                                    </Link>
                                 </Button>
                             </div>
                         )}
