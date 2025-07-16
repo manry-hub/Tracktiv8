@@ -1,7 +1,7 @@
-pintasan ai
+benerin seo
 
 bikin readme
 
 bikin ppt
 
-watch demo
+bikin demo

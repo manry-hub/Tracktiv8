@@ -23,15 +23,16 @@ export default function Navbar() {
         }
     };
     return (
-        <nav className="fixed top-0 w-full z-50 glassmorphism bg-gray-100">
-            <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-                <div className="container flex h-16 items-center">
+        <nav className="fixed top-0 w-full z-50 bg-white rounded-b-full ">
+            <nav className=" max-w-7xl mx-auto px-6 sm:px-6 lg:px-8 flex justify-center">
+                <div className="container flex justify-between h-16 items-center w-full">
                     <div className="mr-4 flex items-center gap-2">
                         <Image
                             src="/icon-tracktiv8.png"
                             alt="icon-tracktiv"
                             width={50}
                             height={50}
+                            className="mb-2 ml-1"
                         />
                         <Link href="/">
                             <h1 className="text-2xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">
@@ -40,27 +41,29 @@ export default function Navbar() {
                         </Link>
                     </div>
 
-                    <div className="flex flex-1 items-center  space-x-2 justify-end">
+                    <div className="flex items-center  space-x-2 ">
                         {loading ? (
                             <div className="h-8 w-20 animate-pulse bg-muted rounded" />
                         ) : user ? (
-                            <div className="flex items-center space-x-4">
-                                <div className="sm:flex items-center space-x-2 hidden">
+                            <div className="flex items-center sm:space-x-4">
+                                <div className="flex items-center space-x-2 ">
                                     <User className="h-4 w-4" />
                                     <Link href="/dashboard">
-                                        <span className="text-sm">
+                                        <span className="text-sm sm:flex hidden">
                                             {user.email}
                                         </span>
                                     </Link>
                                 </div>
                                 <Button
-                                    variant="outline"
+                                    variant="ghost"
                                     size="sm"
                                     onClick={handleLogout}
                                     className="hover:bg-orange-400 hover:text-white"
                                 >
-                                    <LogOut className="h-4 w-4 mr-2" />
-                                    Log Out
+                                    <LogOut className="h-4 w-4 mr-2 " />
+                                    <span className="sm:flex hidden">
+                                        Log Out
+                                    </span>
                                 </Button>
                             </div>
                         ) : (
