@@ -6,7 +6,17 @@ import AuthGuard from "@/components/auth/auth-guard";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
+import { doc, setDoc , getDoc} from "firebase/firestore";
+import { useAuth } from "@/contexts/auth-context"; // pastikan useAuth mengembalikan user.uid
+import { db } from "@/lib/firebase";
+
+
 export default function DashboardPage() {
+    const { user } = useAuth(); // ambil user dari context
+
+    
+
+    
     const [profile, setProfile] = useState<{
         name: string;
         age: string;
@@ -23,55 +33,78 @@ export default function DashboardPage() {
     );
 
     useEffect(() => {
-        const user = localStorage.getItem("userProfile");
-        const field = localStorage.getItem("recommendedField");
-        const scores = localStorage.getItem("fieldScores");
+        const fetchData = async () => {
+            if (!user) return;
 
-        const roleKeys = Object.keys(localStorage).filter((key) =>
-            key.startsWith("role_result_")
-        );
-        const courseMap = {
-            "Fullstack JavaScript":
-                "https://www.hacktiv8.com/full-stack-javascript-immersive",
-            "Backend GoLang": "https://www.hacktiv8.com/bootcamp-golang",
-            "Frontend React": "https://www.hacktiv8.com/bootcamp-frontend",
-            "Data Science": "https://www.hacktiv8.com/data-science",
-            "Data Analytics": "https://www.hacktiv8.com/data-analytics",
-            "Digital Marketing": "https://www.hacktiv8.com/digital-marketing",
+            try {
+                const docRef = doc(db, "users", user.uid);
+                const docSnap = await getDoc(docRef);
+
+                if (docSnap.exists()) {
+                    const data = docSnap.data();
+
+                    setProfile(data.profile || null);
+                    setField(data.field || null);
+                    setFieldScores(data.fieldScores || null);
+                    setRole(data.roles || []);
+                    if (data.course) {
+                        const courseMap = {
+                            "Fullstack JavaScript":
+                                "https://www.hacktiv8.com/full-stack-javascript-immersive",
+                            "Backend GoLang":
+                                "https://www.hacktiv8.com/bootcamp-golang",
+                            "Frontend React":
+                                "https://www.hacktiv8.com/bootcamp-frontend",
+                            "Data Science":
+                                "https://www.hacktiv8.com/data-science",
+                            "Data Analytics":
+                                "https://www.hacktiv8.com/data-analytics",
+                            "Digital Marketing":
+                                "https://www.hacktiv8.com/digital-marketing",
+                        };
+
+                        setCourse({
+                            name: data.course.name,
+                            link: courseMap[data.course.name] || "#",
+                        });
+                    }
+                } else {
+                    console.warn("Tidak ada data untuk user ini.");
+                }
+            } catch (error) {
+                console.error("Gagal mengambil data:", error);
+            }
         };
 
-        if (user) setProfile(JSON.parse(user));
-        if (field) setField(field);
-        if (scores) setFieldScores(JSON.parse(scores));
-
-        if (roleKeys.length > 0) {
-            const result = JSON.parse(
-                localStorage.getItem(roleKeys[0]) || "{}"
-            ) as Record<string, number>;
-            const sorted = Object.entries(result)
-                .map(([name, score]) => ({ name, score }))
-                .sort((a, b) => b.score - a.score);
-            setRole(sorted);
+        fetchData();
+    }, [user]);
+    const resetFirebaseData = async () => {
+        if (!user) {
+            alert("Kamu harus login terlebih dahulu.");
+            return;
         }
 
-        const selectedCourse = Object.keys(courseMap).find(
-            (courseName) =>
-                window.localStorage.getItem("selectedCourse") === courseName
+        const konfirmasi = confirm(
+            "Yakin ingin mereset semua data dari Firebase?"
         );
+        if (!konfirmasi) return;
 
-        if (selectedCourse) {
-            setCourse({
-                name: selectedCourse,
-                link: courseMap[selectedCourse],
-            });
+        try {
+            await setDoc(doc(db, "users", user.uid), {});
+
+            alert("Data berhasil dihapus dari Firebase.");
+            window.location.reload(); // refresh tampilan dashboard
+        } catch (error) {
+            console.error("Gagal menghapus data:", error);
+            alert("Terjadi kesalahan saat menghapus data.");
         }
-    }, []);
+    };
+    
+    
 
     return (
-        <AuthGuard
-        >
+        <AuthGuard>
             <div className="space-y-6">
-               
                 <div className=" py-20 px-6 max-w-4xl mx-auto">
                     <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
 
@@ -86,7 +119,6 @@ export default function DashboardPage() {
                             <p>
                                 <strong>Status:</strong> {profile.status}
                             </p>
-                           
                         </div>
                     )}
 
@@ -95,10 +127,7 @@ export default function DashboardPage() {
                             <h2 className="text-xl font-semibold mb-2">
                                 Hasil Field
                             </h2>
-                            <p className="mb-2">
-                                <strong>Field yang Direkomendasikan:</strong>{" "}
-                                {field}
-                            </p>
+                            
                             <ul className="list-disc pl-6">
                                 {Object.entries(fieldScores).map(
                                     ([key, value]) => (
@@ -150,19 +179,13 @@ export default function DashboardPage() {
                 </div>
                 <div className=" text-center">
                     <button
-                        onClick={() => {
-                            if (confirm("Yakin ingin mereset semua data?")) {
-                                localStorage.clear();
-                                window.location.reload();
-                            }
-                        }}
+                        onClick={resetFirebaseData}
                         className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
                     >
                         Reset Semua Data
                     </button>
                 </div>
-
-               </div>
+            </div>
         </AuthGuard>
     );
 }

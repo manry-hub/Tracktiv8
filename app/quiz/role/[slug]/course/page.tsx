@@ -3,6 +3,10 @@
 import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { Button } from "@/components/ui/button";
+import { doc, setDoc } from "firebase/firestore";
+import { useAuth } from "@/contexts/auth-context"; // pastikan useAuth mengembalikan user.uid
+import { db } from "@/lib/firebase";
+
 
 const courseLinks: Record<string, string> = {
     "Fullstack JavaScript":
@@ -17,6 +21,51 @@ const courseLinks: Record<string, string> = {
 type TimeOption = "pagi" | "malam" | "fleksibel";
 
 export default function CourseRecommendationPage() {
+    const { user } = useAuth(); // ambil user dari context
+
+    const saveToFirebase = async () => {
+        if (!user) {
+            alert("Kamu harus login terlebih dahulu.");
+            return;
+        }
+
+        const userProfile = localStorage.getItem("userProfile");
+        const recommendedField = localStorage.getItem("recommendedField");
+        const fieldScores = localStorage.getItem("fieldScores");
+
+        const roleKeys = Object.keys(localStorage).filter((key) =>
+            key.startsWith("role_result_")
+        );
+
+        const roles = roleKeys.flatMap((key) => {
+            const result = JSON.parse(localStorage.getItem(key) || "{}");
+            return Object.entries(result).map(([name, score]) => ({
+                name,
+                score,
+            }));
+        });
+        router.push("/dashboard");
+        const selectedCourse = localStorage.getItem("selectedCourse");
+
+        try {
+            await setDoc(doc(db, "users", user.uid), {
+                profile: JSON.parse(userProfile || "{}"),
+                field: recommendedField,
+                fieldScores: JSON.parse(fieldScores || "{}"),
+                roles,
+                course: selectedCourse ? { name: selectedCourse } : null,
+                timestamp: new Date(),
+            });
+
+            alert("Data berhasil disimpan ke Firebase!");
+        } catch (error) {
+            console.error("Gagal menyimpan data:", error);
+            alert("Terjadi kesalahan saat menyimpan.");
+        }
+        
+    };
+
+
     const params = useParams();
     const slug = params?.slug as string;
     const router = useRouter();
@@ -39,13 +88,29 @@ export default function CourseRecommendationPage() {
         if (field === "software") {
             if (timeOption === "pagi") {
                 chosenCourse = "Fullstack JavaScript";
-            } else {
+            } else if (timeOption === "malam") {
                 const backendScore = roleResult["Backend"] || 0;
                 const frontendScore = roleResult["Frontend"] || 0;
                 chosenCourse =
                     backendScore >= frontendScore
                         ? "Backend GoLang"
                         : "Frontend React";
+            } else {
+                // fleksibel: ambil role tertinggi dari software
+                const relevantRoles = ["Backend", "Frontend", "Fullstack"];
+                const topRole = relevantRoles.reduce((prev, curr) => {
+                    return (roleResult[curr] || 0) > (roleResult[prev] || 0)
+                        ? curr
+                        : prev;
+                }, relevantRoles[0]);
+
+                if (topRole === "Backend") {
+                    chosenCourse = "Backend GoLang";
+                } else if (topRole === "Frontend") {
+                    chosenCourse = "Frontend React";
+                } else {
+                    chosenCourse = "Fullstack JavaScript";
+                }
             }
         } else if (field === "data") {
             if (timeOption === "pagi") {
@@ -60,7 +125,6 @@ export default function CourseRecommendationPage() {
                 const ds = roleResult["Science"] || 0;
                 const da = roleResult["Analytics"] || 0;
                 chosenCourse = ds >= da ? "Data Science" : "Data Analytics";
-
             }
         } else if (field === "marketing") {
             if (timeOption === "pagi") {
@@ -111,7 +175,7 @@ export default function CourseRecommendationPage() {
             {timeOption && (
                 <div className="mt-10">
                     {course ? (
-                        <div className="bg-white rounded-lg shadow-lg p-6 max-w-xl">
+                        <div className="bg-white rounded-lg shadow-lg p-6 max-w-xl" data-aos="flip-up">
                             <h2 className="text-xl font-bold ">
                                 Rekomendasi Course Kamu:
                             </h2>
@@ -136,12 +200,14 @@ export default function CourseRecommendationPage() {
             )}
 
             {timeOption && (
-                <Button
-                    className="mt-20"
-                    onClick={() => router.push("/dashboard")}
-                >
-                    Rekap Hasil ke Dashboard
-                </Button>
+                
+            <Button
+                onClick={saveToFirebase}
+                
+                className="mt-20 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+            >
+                Rekap Hasil ke Dashboard
+            </Button>
             )}
         </div>
     );

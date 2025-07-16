@@ -47,7 +47,7 @@ export default function QuizRolePage() {
                 {fields.map((field, idx) => (
                     <div
                         key={idx}
-                        className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center"
+                        className="relative w-64 h-64 md:w-80 md:h-80 flex items-center justify-center" data-aos="flip-left "
                     >
                         <svg
                             className="absolute top-0 left-0 w-full h-full"
@@ -92,10 +92,20 @@ export default function QuizRolePage() {
                             </span>
                             <button
                                 onClick={() => {
+                                    // Hapus semua localStorage key yang dimulai dengan "role_result_"
+                                    Object.keys(localStorage).forEach((key) => {
+                                        if (key.startsWith("role_result_")) {
+                                            localStorage.removeItem(key);
+                                        }
+                                    });
+
+                                    // Simpan field yang dipilih
                                     localStorage.setItem(
                                         "recommendedField",
                                         field.name
-                                    ); // simpan nama field
+                                    );
+
+                                    // Arahkan ke halaman quiz role
                                     router.push(`/quiz/role/${field.slug}`);
                                 }}
                                 className="mt-3 border border-white rounded-full px-4 py-2 text-sm md:text-base hover:bg-white hover:text-black transition"

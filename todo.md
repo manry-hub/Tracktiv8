@@ -1,6 +1,5 @@
-dashboard (save akun, ubah jadi grafik)
+dashboard (ubah jadi grafik)
           (btn kembali ke home)
-          (btn simpan data)
           (btn reset data)
           (btn quiz ulang)
 

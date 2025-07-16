@@ -47,7 +47,7 @@ export default function RoleDetailPage() {
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6">
-            <div className="max-w-xl w-full">
+            <div className="max-w-xl w-full" data-aos="fade-left">
                 
                 <h2 className="text-xl font-semibold mb-2 text-center">{question.question}</h2>
                 <div className="space-y-3 py-10">

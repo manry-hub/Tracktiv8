@@ -34,6 +34,7 @@ const traits = [
 ];
 
 export default function QuizPage() {
+    
     const router = useRouter();
     const [selectedTraits, setSelectedTraits] = useState<string[]>([]);
     const [name, setName] = useState("");
@@ -66,12 +67,10 @@ export default function QuizPage() {
             }
         });
 
-        const recommendedField = Object.keys(scores).reduce((a, b) =>
-            scores[a] > scores[b] ? a : b
-        );
+        
 
         localStorage.setItem("fieldScores", JSON.stringify(scores));
-        localStorage.setItem("recommendedField", recommendedField);
+        
         localStorage.setItem(
             "userProfile",
             JSON.stringify({ name, status })
@@ -82,8 +81,10 @@ export default function QuizPage() {
 
     return (
         <AuthGuard>
-            <div className="container flex flex-col gap-10 mt-20 items-center ounded-lg  max-w-7xl py-10 mx-auto px-6 sm:px-6 lg:px-8">
-                
+            <div
+                data-aos="fade-down"
+                className="container flex flex-col gap-10 mt-20 items-center ounded-lg  max-w-7xl py-10 mx-auto px-6 sm:px-6 lg:px-8"
+            >
                 {/* Form Data Diri */}
                 <div className="text-center">
                     <h1 className="text-xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">

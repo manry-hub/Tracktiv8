@@ -45,11 +45,11 @@ export const quizData: Record<
                 question: "Kamu lebih tertarik untuk?",
                 options: [
                     {
-                        text: "Membuat sistem yang bisa belajar dari data dan membuat prediksi otomatis.",
+                        text: "Membuat prediksi otomatis.",
                         score: { Scientist: 1 },
                     },
                     {
-                        text: " Menganalisis data masa lalu untuk mencari pola",
+                        text: " Mencari pola dari data lampau",
                         score: { Analytics: 1 },
                     },
                 ],
@@ -58,11 +58,11 @@ export const quizData: Record<
                 question: "Mana yang lebih membuatmu tertantang?",
                 options: [
                     {
-                        text: "Mengubah data yang kompleks menjadi insight yang mudah dipahami.",
+                        text: "Mengubah data yang kompleks menjadi insight",
                         score: { Analytics: 1 },
                     },
                     {
-                        text: " Menggunakan algoritma untuk memprediksi dan mengotomatiskan keputusan. ",
+                        text: " Mmemprediksi dan mengotomatiskan keputusan. ",
                         score: { Scientist: 1 },
                     },
                 ],
@@ -72,11 +72,11 @@ export const quizData: Record<
                     "Dalam sebuah proyek, kamu lebih memilih peran sebagai?",
                 options: [
                     {
-                        text: " Perancang sistem cerdas yang mempelajari data untuk otomatisasi. ",
+                        text: " Perancang sistem cerdas ",
                         score: { Scientist: 1 },
                     },
                     {
-                        text: "Penyaji informasi data yang bisa membantu keputusan bisnis.",
+                        text: "Penyaji informasi data",
                         score: { Analytics: 1 },
                     },
                 ],

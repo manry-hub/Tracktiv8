@@ -34,7 +34,7 @@ export default function RoleResultPage() {
                     return (
                         <div
                             key={idx}
-                            className="relative bg-white border rounded-xl shadow-md w-64 h-40 p-4 flex flex-col justify-center items-center"
+                            className="relative bg-white border rounded-xl shadow-md w-64 h-40 p-4 flex flex-col justify-center items-center" data-aos="flip-left"
                         >
                             <span className="text-lg font-semibold capitalize text-gray-800">
                                 {key}
