@@ -19,7 +19,7 @@ export default function RootLayout({
         <html lang="en">
             <body className="font-poppins">
                 <AuthProvider>
-                    <Navbar />
+                    
                     <main className="container mx-auto ">{children}</main>
                 </AuthProvider>
             </body>
