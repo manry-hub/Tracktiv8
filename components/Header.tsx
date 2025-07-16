@@ -4,11 +4,11 @@ export default function Header() {
         <section
             data-aos="fade-up"
             id="home"
-            className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 mt-20"
+            className="pt-20 pb-16 px-4 sm:px-6 lg:px-8 mt-10 sm:mt-20"
         >
             <div className="max-w-7xl mx-auto">
                 <div className="text-center">
-                    <div className="glassmorphism rounded-3xl p-8 sm:p-12 lg:p-16 mb-12">
+                    <div className="rounded-3xl p-8 sm:p-12 lg:p-16 mb-12">
                         <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-gray-900 mb-6">
                             Bridge Your Skill
                             <span className="ml-1 bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent">

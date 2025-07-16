@@ -9,9 +9,10 @@ export default function Footer() {
                                 Tracktiv8
                             </h3>
                             <p className="text-gray-600 mb-6 max-w-md">
-                                Empowering professionals to identify, analyze,
-                                and bridge skill gaps for accelerated career
-                                growth and success.
+                                Memberdayakan para profesional untuk
+                                mengidentifikasi, dan menganalisis keterampilan
+                                untuk mempercepat pertumbuhan dan kesuksesan
+                                karier.
                             </p>
                             <div className="flex space-x-4">
                                 <a

@@ -6,7 +6,7 @@ import { Button } from "@/components/ui/button";
 import { doc, setDoc } from "firebase/firestore";
 import { useAuth } from "@/contexts/auth-context"; // pastikan useAuth mengembalikan user.uid
 import { db } from "@/lib/firebase";
-
+import SuccessModal from "@/components/ui/success-modal";
 
 const courseLinks: Record<string, string> = {
     "Fullstack JavaScript":
@@ -22,6 +22,7 @@ type TimeOption = "pagi" | "malam" | "fleksibel";
 
 export default function CourseRecommendationPage() {
     const { user } = useAuth(); // ambil user dari context
+    const [showModal, setShowModal] = useState(false);
 
     const saveToFirebase = async () => {
         if (!user) {
@@ -44,7 +45,7 @@ export default function CourseRecommendationPage() {
                 score,
             }));
         });
-        router.push("/dashboard");
+
         const selectedCourse = localStorage.getItem("selectedCourse");
 
         try {
@@ -57,14 +58,18 @@ export default function CourseRecommendationPage() {
                 timestamp: new Date(),
             });
 
-            alert("Data berhasil disimpan ke Firebase!");
+            // Tampilkan modal sukses
+            setShowModal(true);
+
+            // Tunggu 3 detik, lalu redirect ke dashboard
+            setTimeout(() => {
+                router.push("/dashboard");
+            }, 3000);
         } catch (error) {
             console.error("Gagal menyimpan data:", error);
             alert("Terjadi kesalahan saat menyimpan.");
         }
-        
     };
-
 
     const params = useParams();
     const slug = params?.slug as string;
@@ -175,7 +180,10 @@ export default function CourseRecommendationPage() {
             {timeOption && (
                 <div className="mt-10">
                     {course ? (
-                        <div className="bg-white rounded-lg shadow-lg p-6 max-w-xl" data-aos="flip-up">
+                        <div
+                            className="bg-white rounded-lg shadow-lg p-6 max-w-xl"
+                            data-aos="flip-up"
+                        >
                             <h2 className="text-xl font-bold ">
                                 Rekomendasi Course Kamu:
                             </h2>
@@ -200,14 +208,16 @@ export default function CourseRecommendationPage() {
             )}
 
             {timeOption && (
-                
-            <Button
-                onClick={saveToFirebase}
-                
-                className="mt-20 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
-            >
-                Rekap Hasil ke Dashboard
-            </Button>
+                <Button
+                    onClick={saveToFirebase}
+                    className="mt-20 px-6 py-2 bg-green-600 text-white rounded-lg hover:bg-green-700 transition"
+                >
+                    Rekap Hasil ke Dashboard
+                </Button>
+            )}
+            {/* Modal ditampilkan jika berhasil */}
+            {showModal && (
+                <SuccessModal onClose={() => router.push("/dashboard")} />
             )}
         </div>
     );

@@ -9,10 +9,10 @@ import { usePathname } from "next/navigation";
 
 export default function Navbar() {
     const pathname = usePathname();
-    
+
     if (pathname.startsWith("/granite-ibm")) {
         return null;
-    } 
+    }
     const { user, logout, loading } = useAuth();
 
     const handleLogout = async () => {
@@ -23,9 +23,9 @@ export default function Navbar() {
         }
     };
     return (
-        <nav className="fixed top-0 w-full z-50 glassmorphism ">
+        <nav className="fixed top-0 w-full z-50 glassmorphism bg-gray-100">
             <nav className="border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 max-w-7xl mx-auto px-6 sm:px-6 lg:px-8">
-                <div className="container flex h-14 items-center">
+                <div className="container flex h-16 items-center">
                     <div className="mr-4 flex items-center gap-2">
                         <Image
                             src="/icon-tracktiv8.png"

@@ -11,7 +11,6 @@ import Benefits from "@/components/Benefits";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-    
     useEffect(() => {
         AOS.init({
             duration: 1000,
@@ -19,13 +18,11 @@ export default function Home() {
         });
     }, []);
     return (
-        
-            <div>
-                <Header />
-                <Paths />
-                <Benefits />
-                <Footer />
-            </div>
-        
+        <div>
+            <Header />
+            <Paths />
+            <Benefits />
+            <Footer />
+        </div>
     );
 }

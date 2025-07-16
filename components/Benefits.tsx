@@ -5,16 +5,17 @@ export default function Benefits() {
                 <div className="glassmorphism rounded-3xl p-8 sm:p-12">
                     <div className="text-center mb-12">
                         <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 mb-4">
-                            Why Choose Tracktiv8?
+                            Mengapa Memilih Tracktiv8?
                         </h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            Our comprehensive platform provides everything you
-                            need to identify and bridge skill gaps effectively
+                            Platform kami menyediakan semua yang kamu butuhkan
+                            untuk mengidentifikasi dan menjembatani kesenjangan
+                            keterampilan secara efektif.
                         </p>
                     </div>
 
                     <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                        <div className=" space-y-8">
+                        <div className="space-y-8">
                             <div
                                 data-aos="fade-right"
                                 data-aos-delay="200"
@@ -37,13 +38,14 @@ export default function Benefits() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                        Comprehensive Analysis
+                                        Analisis Komprehensif
                                     </h3>
                                     <p className="text-gray-600">
-                                        Get detailed insights into your current
-                                        skills and identify areas for
-                                        improvement with our advanced assessment
-                                        tools.
+                                        Dapatkan wawasan mendalam tentang
+                                        keterampilan kamu saat ini dan
+                                        identifikasi area yang perlu
+                                        ditingkatkan dengan alat penilaian
+                                        canggih kami.
                                     </p>
                                 </div>
                             </div>
@@ -70,12 +72,13 @@ export default function Benefits() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                        Personalized Recommendations
+                                        Rekomendasi yang Dipersonalisasi
                                     </h3>
                                     <p className="text-gray-600">
-                                        Receive tailored learning paths and
-                                        course recommendations based on your
-                                        specific skill gaps and career goals.
+                                        Dapatkan jalur pembelajaran dan
+                                        rekomendasi kursus yang disesuaikan
+                                        berdasarkan kesenjangan keterampilan dan
+                                        tujuan karier kamu.
                                     </p>
                                 </div>
                             </div>
@@ -102,12 +105,12 @@ export default function Benefits() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                        Real-time Progress Tracking
+                                        Pelacakan Kemajuan Secara Real-time
                                     </h3>
                                     <p className="text-gray-600">
-                                        Monitor your skill development journey
-                                        with interactive dashboards and progress
-                                        tracking features.
+                                        Pantau perjalanan pengembangan
+                                        keterampilanmu dengan dashboard
+                                        interaktif dan fitur pelacakan kemajuan.
                                     </p>
                                 </div>
                             </div>
@@ -134,21 +137,19 @@ export default function Benefits() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                        Industry Expert Insights
+                                        Wawasan dari Ahli Industri
                                     </h3>
                                     <p className="text-gray-600">
-                                        Access insights from industry
-                                        professionals and stay updated with the
-                                        latest skill requirements in your field.
+                                        Akses wawasan dari para profesional
+                                        industri dan tetap up-to-date dengan
+                                        kebutuhan keterampilan terbaru di
+                                        bidangmu.
                                     </p>
                                 </div>
                             </div>
                         </div>
 
-                        <div
-                           
-                            className="glassmorphism-light rounded-2xl p-8 text-center"
-                        >
+                        <div className="glassmorphism-light rounded-2xl p-8 text-center">
                             <div className="w-32 h-32 bg-gradient-to-r from-yellow-500 to-orange-500 rounded-full mx-auto mb-6 flex items-center justify-center">
                                 <svg
                                     className="w-16 h-16 text-white"
@@ -165,15 +166,15 @@ export default function Benefits() {
                                 </svg>
                             </div>
                             <h3 className="text-2xl font-bold text-gray-900 mb-4">
-                                Start Your Journey Today
+                                Mulai Perjalananmu Hari Ini
                             </h3>
                             <p className="text-gray-600 mb-6">
-                                Join thousands of professionals who have
-                                successfully bridged their skill gaps with
-                                Tracktiv8.
+                                Bergabunglah dengan ribuan profesional yang
+                                telah berhasil menjembatani kesenjangan
+                                keterampilan mereka bersama Tracktiv8.
                             </p>
                             <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
-                                Get Started Free
+                                Mulai Sekarang Gratis
                             </button>
                         </div>
                     </div>

@@ -1,48 +1,30 @@
 "use client";
 
 import { useEffect, useState } from "react";
-
 import AuthGuard from "@/components/auth/auth-guard";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
-
-import { doc, setDoc , getDoc} from "firebase/firestore";
-import { useAuth } from "@/contexts/auth-context"; // pastikan useAuth mengembalikan user.uid
+import { doc, setDoc, getDoc } from "firebase/firestore";
+import { useAuth } from "@/contexts/auth-context";
 import { db } from "@/lib/firebase";
-
+import { toast } from "sonner"; // pastikan sudah diimpor
 
 export default function DashboardPage() {
-    const { user } = useAuth(); // ambil user dari context
-
-    
-
-    
-    const [profile, setProfile] = useState<{
-        name: string;
-        age: string;
-        status: string;
-    } | null>(null);
-    const [field, setField] = useState<string | null>(null);
-    const [fieldScores, setFieldScores] = useState<Record<
-        string,
-        number
-    > | null>(null);
-    const [role, setRole] = useState<{ name: string; score: number }[]>([]);
-    const [course, setCourse] = useState<{ name: string; link: string } | null>(
-        null
-    );
+    const { user } = useAuth();
+    const [profile, setProfile] = useState(null);
+    const [field, setField] = useState(null);
+    const [fieldScores, setFieldScores] = useState(null);
+    const [role, setRole] = useState([]);
+    const [course, setCourse] = useState(null);
 
     useEffect(() => {
         const fetchData = async () => {
             if (!user) return;
-
             try {
                 const docRef = doc(db, "users", user.uid);
                 const docSnap = await getDoc(docRef);
-
                 if (docSnap.exists()) {
                     const data = docSnap.data();
-
                     setProfile(data.profile || null);
                     setField(data.field || null);
                     setFieldScores(data.fieldScores || null);
@@ -62,128 +44,183 @@ export default function DashboardPage() {
                             "Digital Marketing":
                                 "https://www.hacktiv8.com/digital-marketing",
                         };
-
                         setCourse({
                             name: data.course.name,
                             link: courseMap[data.course.name] || "#",
                         });
                     }
-                } else {
-                    console.warn("Tidak ada data untuk user ini.");
                 }
             } catch (error) {
                 console.error("Gagal mengambil data:", error);
             }
         };
-
         fetchData();
     }, [user]);
-    const resetFirebaseData = async () => {
-        if (!user) {
-            alert("Kamu harus login terlebih dahulu.");
-            return;
-        }
-
-        const konfirmasi = confirm(
-            "Yakin ingin mereset semua data dari Firebase?"
-        );
-        if (!konfirmasi) return;
-
-        try {
-            await setDoc(doc(db, "users", user.uid), {});
-
-            alert("Data berhasil dihapus dari Firebase.");
-            window.location.reload(); // refresh tampilan dashboard
-        } catch (error) {
-            console.error("Gagal menghapus data:", error);
-            alert("Terjadi kesalahan saat menghapus data.");
-        }
-    };
-    
-    
 
     return (
         <AuthGuard>
-            <div className="space-y-6">
-                <div className=" py-20 px-6 max-w-4xl mx-auto">
-                    <h1 className="text-3xl font-bold mb-6">Dashboard</h1>
+            <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+                <div className="max-w-7xl mx-auto space-y-10">
+                    <h1 className="text-3xl font-bold text-center text-gray-800 mt-10">
+                        Summary Of All
+                    </h1>
 
-                    {profile && (
-                        <div className="mb-8 p-4 bg-gray-100 rounded-lg">
-                            <h2 className="text-xl font-semibold mb-2">
-                                Data Diri
+                    <div className="grid md:grid-cols-2 gap-6">
+                        <div className="p-6 bg-white shadow-lg rounded-xl">
+                            <h2 className="text-xl font-semibold mb-2 text-gray-700">
+                                Profile
                             </h2>
-                            <p>
-                                <strong>Nama:</strong> {profile.name}
-                            </p>
-                            <p>
-                                <strong>Status:</strong> {profile.status}
-                            </p>
+                            {profile && (
+                                <div className="space-y-1">
+                                    <p>
+                                        <strong>Nama:</strong> {profile.name}
+                                    </p>
+                                    <p>
+                                        <strong>Status:</strong>{" "}
+                                        {profile.status}
+                                    </p>
+                                </div>
+                            )}
                         </div>
-                    )}
 
-                    {field && fieldScores && (
-                        <div className="mb-8 p-4 bg-gray-100 rounded-lg">
-                            <h2 className="text-xl font-semibold mb-2">
-                                Hasil Field
+                        <div className="p-6 bg-white shadow-lg rounded-xl">
+                            <h2 className="text-xl font-semibold mb-2 text-gray-700">
+                                Course Recomendation
                             </h2>
-                            
-                            <ul className="list-disc pl-6">
-                                {Object.entries(fieldScores).map(
-                                    ([key, value]) => (
-                                        <li key={key}>
-                                            {key}: {value}
-                                        </li>
-                                    )
-                                )}
-                            </ul>
+                            {course ? (
+                                <div>
+                                    <p className="text-lg font-medium text-gray-800">
+                                        {course.name}
+                                    </p>
+                                    <a
+                                        href={course.link}
+                                        target="_blank"
+                                        className="text-blue-500 underline"
+                                    >
+                                        {course.link}
+                                    </a>
+                                </div>
+                            ) : (
+                                <p className="text-red-600">
+                                    Belum memilih course
+                                </p>
+                            )}
                         </div>
-                    )}
+                    </div>
 
                     {role.length > 0 && (
-                        <div className="mb-8 p-4 bg-gray-100 rounded-lg">
-                            <h2 className="text-xl font-semibold mb-2">
-                                Hasil Role
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h2 className="text-xl font-semibold mb-4 text-gray-700 text-center">
+                                Your Role is
                             </h2>
-                            <ul className="list-disc pl-6">
-                                {role.map((r, i) => (
-                                    <li key={i}>
-                                        {r.name}: {r.score}
-                                    </li>
-                                ))}
-                            </ul>
+                            <div className="space-y-4">
+                                {role.map((r, i) => {
+                                    const total = role.reduce(
+                                        (sum, item) => sum + item.score,
+                                        0
+                                    );
+                                    const percent =
+                                        total > 0
+                                            ? Math.round(
+                                                  (r.score / total) * 100
+                                              )
+                                            : 0;
+                                    return (
+                                        <div key={i}>
+                                            <div className="flex justify-between text-sm text-gray-600">
+                                                <span>{r.name}</span>
+                                                <span>{percent}%</span>
+                                            </div>
+                                            <div className="w-full bg-gray-200 rounded-full h-3">
+                                                <div
+                                                    className="bg-orange-400 h-3 rounded-full"
+                                                    style={{
+                                                        width: `${percent}%`,
+                                                    }}
+                                                />
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
                         </div>
                     )}
-
-                    {course ? (
-                        <div className="mb-8 p-4 bg-gray-100 rounded-lg">
-                            <h2 className="text-xl font-semibold mb-2">
-                                Course yang Direkomendasikan
+                    {fieldScores && (
+                        <div className="bg-white p-6 rounded-xl shadow-lg">
+                            <h2 className="text-xl font-semibold mb-4 text-gray-700 text-center">
+                                Your field is
                             </h2>
-                            <p>
-                                <strong>{course.name}</strong> –{" "}
-                                <a
-                                    href={course.link}
-                                    target="_blank"
-                                    className="text-blue-500 underline"
-                                >
-                                    Lihat Course
-                                </a>
-                            </p>
-                        </div>
-                    ) : (
-                        <div className="text-red-600 text-lg">
-                            Belum memilih course
+                            <div className="flex justify-center flex-wrap gap-6">
+                                {Object.entries(fieldScores).map(
+                                    ([key, value], idx) => {
+                                        const total = Object.values(
+                                            fieldScores
+                                        ).reduce((acc, val) => acc + val, 0);
+                                        const percent =
+                                            total > 0
+                                                ? Math.round(
+                                                      (value / total) * 100
+                                                  )
+                                                : 0;
+                                        return (
+                                            <div
+                                                key={idx}
+                                                className="relative w-32 h-32"
+                                            >
+                                                <svg
+                                                    viewBox="0 0 200 200"
+                                                    className="w-full h-full"
+                                                >
+                                                    <circle
+                                                        r="90"
+                                                        cx="100"
+                                                        cy="100"
+                                                        stroke="#E5E7EB"
+                                                        strokeWidth="10"
+                                                        fill="transparent"
+                                                    />
+                                                    <circle
+                                                        r="90"
+                                                        cx="100"
+                                                        cy="100"
+                                                        stroke="#F97316"
+                                                        strokeWidth="10"
+                                                        fill="transparent"
+                                                        strokeDasharray={
+                                                            2 * Math.PI * 90
+                                                        }
+                                                        strokeDashoffset={
+                                                            2 *
+                                                            Math.PI *
+                                                            90 *
+                                                            (1 - percent / 100)
+                                                        }
+                                                        strokeLinecap="round"
+                                                    />
+                                                </svg>
+                                                <div className="absolute inset-0 flex flex-col items-center justify-center">
+                                                    <span className="text-sm font-medium text-gray-700 capitalize">
+                                                        {key}
+                                                    </span>
+                                                    <span className="text-xl font-bold text-gray-900">
+                                                        {percent}%
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        );
+                                    }
+                                )}
+                            </div>
                         </div>
                     )}
-                </div>
-                <div className=" text-center">
-                    <button
-                        onClick={resetFirebaseData}
-                        className="px-6 py-2 bg-red-600 text-white rounded-lg hover:bg-red-700 transition"
-                    >
-                        Reset Semua Data
-                    </button>
+                    <div className="flex flex-row justify-center gap-4 pt-6">
+                        <Link href="/">
+                            <Button variant="outline">Kembali</Button>
+                        </Link>
+                        <Link href="/quiz">
+                            <Button variant="destructive">Quiz Ulang</Button>
+                        </Link>
+                    </div>
                 </div>
             </div>
         </AuthGuard>

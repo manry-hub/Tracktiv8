@@ -17,7 +17,7 @@ export default function RootLayout({
 }) {
     return (
         <html lang="en">
-            <body className="font-poppins">
+            <body className="font-poppins bg-gray-100">
                 <AuthProvider>
                     <Navbar />
                     <main className="container mx-auto ">{children}</main>
