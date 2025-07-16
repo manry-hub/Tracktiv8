@@ -39,7 +39,7 @@ export default function QuizRolePage() {
 
     return (
         <div className="min-h-screen flex flex-col items-center justify-center gap-10 text-black px-4 py-10">
-            <h1 className="text-3xl md:text-4xl font-semibold text-center">
+            <h1 className="text-3xl md:text-4xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent text-center">
                 Bidang Kamu
             </h1>
 
@@ -91,9 +91,13 @@ export default function QuizRolePage() {
                                 {field.value}%
                             </span>
                             <button
-                                onClick={() =>
-                                    router.push(`/quiz/role/${field.slug}`)
-                                }
+                                onClick={() => {
+                                    localStorage.setItem(
+                                        "recommendedField",
+                                        field.name
+                                    ); // simpan nama field
+                                    router.push(`/quiz/role/${field.slug}`);
+                                }}
                                 className="mt-3 border border-white rounded-full px-4 py-2 text-sm md:text-base hover:bg-white hover:text-black transition"
                             >
                                 Pilih
@@ -102,7 +106,6 @@ export default function QuizRolePage() {
                     </div>
                 ))}
             </div>
-           
         </div>
     );
 }

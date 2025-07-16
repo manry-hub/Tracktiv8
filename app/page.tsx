@@ -11,7 +11,7 @@ import Benefits from "@/components/Benefits";
 import Footer from "@/components/Footer";
 
 export default function Home() {
-    const { user } = useAuth();
+    
     useEffect(() => {
         AOS.init({
             duration: 1000,

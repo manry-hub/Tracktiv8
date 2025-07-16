@@ -1,13 +1,10 @@
-ui -> responsif
-	quiz (field, role, course)
-	result (field, role, course)
-	dashboard (summary dan cetak pdf)
-	
-navigasi
+dashboard (save akun, ubah jadi grafik)
+          (btn kembali ke home)
+          (btn simpan data)
+          (btn reset data)
+          (btn quiz ulang)
 
 tombol pop up ai
-
-tombol reset data
 
 bikin readme
 

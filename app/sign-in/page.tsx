@@ -3,7 +3,7 @@ import Link from "next/link";
 
 export default function SignInPage() {
     return (
-        <div className="space-y-6 mt-20 md:mt-40">
+        <div className="space-y-6 mt-10 md:mt-40">
             <SignInForm />
 
             <p className="text-center text-sm text-muted-foreground">

@@ -15,7 +15,7 @@ export const quizData: Record<
         title: "Analyst vs Scientist",
         questions: [
             {
-                question: "1. Mana aktivitas yang paling kamu sukai?",
+                question: "Mana aktivitas yang paling kamu sukai?",
                 options: [
                     {
                         text: "Mencoba model-machine learning baru",
@@ -29,7 +29,7 @@ export const quizData: Record<
             },
 
             {
-                question: "2. Kamu lebih suka bekerja dengan:",
+                question: "Kamu lebih suka bekerja dengan?",
                 options: [
                     {
                         text: "Excel, Tableau, Power BI, SQL",
@@ -42,7 +42,7 @@ export const quizData: Record<
                 ],
             },
             {
-                question: "3. Kamu lebih tertarik untuk:",
+                question: "Kamu lebih tertarik untuk?",
                 options: [
                     {
                         text: "Membuat sistem yang bisa belajar dari data dan membuat prediksi otomatis.",
@@ -55,7 +55,7 @@ export const quizData: Record<
                 ],
             },
             {
-                question: "4. Mana yang lebih membuatmu tertantang",
+                question: "Mana yang lebih membuatmu tertantang?",
                 options: [
                     {
                         text: "Mengubah data yang kompleks menjadi insight yang mudah dipahami.",
@@ -69,7 +69,7 @@ export const quizData: Record<
             },
             {
                 question:
-                    "5. Dalam sebuah proyek, kamu lebih memilih peran sebagai:**",
+                    "Dalam sebuah proyek, kamu lebih memilih peran sebagai?",
                 options: [
                     {
                         text: " Perancang sistem cerdas yang mempelajari data untuk otomatisasi. ",
@@ -88,7 +88,7 @@ export const quizData: Record<
         title: "Frontend vs Backend vs Fullstack",
         questions: [
             {
-                question: "1. Mana aktivitas coding yang paling kamu sukai?",
+                question: "Mana aktivitas coding yang paling kamu sukai?",
                 options: [
                     {
                         text: "Mendesain tampilan antarmuka",
@@ -99,24 +99,24 @@ export const quizData: Record<
                 ],
             },
             {
-                question: "2. Ketika melihat website, kamu lebih fokus pada:",
+                question: "Ketika melihat website, kamu lebih fokus pada?",
                 options: [
                     {
-                        text: "Tampilan, animasi, dan pengalaman pengguna",
+                        text: "Tampilan dan animasi",
                         score: { Frontend: 1 },
                     },
                     {
-                        text: "Kombinasi bagaimana semuanya bekerja dari depan sampai belakang",
+                        text: "Depan sampai belakang",
                         score: { Fullstack: 1 },
                     },
                     {
-                        text: "Seberapa cepat, aman, dan kompleks logika di baliknya.",
+                        text: "Seberapa cepat dan aman",
                         score: { Backend: 1 },
                     },
                 ],
             },
             {
-                question: "3. Tools favorit kamu adalah:",
+                question: "Tools favorit kamu adalah?",
                 options: [
                     {
                         text: "Node.js, Golang, PostgreSQL, Express, API.",
@@ -133,69 +133,69 @@ export const quizData: Record<
                 ],
             },
             {
-                question: "4. Saat membuat aplikasi, kamu ingin:",
+                question: "Saat membuat aplikasi, kamu ingin?",
                 options: [
                     {
-                        text: " Membangun keseluruhan aplikasi dari database sampai tampilannya.  ",
+                        text: "Membangun keseluruhan aplikasi",
                         score: { Fullstack: 1 },
                     },
                     {
-                        text: "Mengubah desain menjadi antarmuka interaktif.",
+                        text: "Mengubah desain menjadi interaktif.",
                         score: { Frontend: 1 },
                     },
                     {
-                        text: "Membangun server, otentikasi, database, dan API",
+                        text: "Membangun server, database, dan API",
                         score: { Backend: 1 },
                     },
                 ],
             },
             {
-                question: "5. Kamu lebih suka memperdalam:",
+                question: "Kamu lebih suka memperdalam?",
                 options: [
                     {
-                        text: "UX/UI, komponen interaktif, animasi, dan CSS. ",
+                        text: "UX/UI, animasi, dan CSS. ",
                         score: { Frontend: 1 },
                     },
                     {
-                        text: "Arsitektur sistem, REST API, autentikasi, dan security.. ",
+                        text: "Arsitektur sistem,  autentikasi, dan security.",
                         score: { Backend: 1 },
                     },
                     {
-                        text: " Semua sisi aplikasi dan cara mereka berkomunikasi.  ",
+                        text: " Semua sisi aplikasi ",
                         score: { Fullstack: 1 },
                     },
                 ],
             },
             {
-                question: "6. Mana yang lebih membuatmu excited?",
+                question: "Mana yang lebih membuatmu excited?",
                 options: [
                     {
-                        text: "Merancang sistem autentikasi dan hubungan antar data.  ",
+                        text: "Merancang hubungan antar data",
                         score: { Backend: 1 },
                     },
                     {
-                        text: " Membangun aplikasi lengkap dari nol sampai bisa digunakan.  ",
+                        text: " Membangun aplikasi lengkap dari nol",
                         score: { Fullstack: 1 },
                     },
                     {
-                        text: "Menyusun komponen UI yang responsive dan user-friendly. ",
+                        text: "Membuat ui responsive dan user-friendly",
                         score: { Frontend: 1 },
                     },
                 ],
             },
             {
-                question: "7. Kamu merasa paling puas ketika:",
+                question: "Kamu merasa paling puas ketika?",
                 options: [
                     {
-                        text: "Server berjalan cepat, API tidak error, dan database rapi. .  ",
+                        text: "Server berjalan cepat dan database rapi",
                         score: { Backend: 1 },
                     },
                     {
-                        text: "UI berjalan halus, indah, dan user-friendly.  ",
+                        text: "UI indah, dan user-friendly",
                         score: { Frontend: 1 },
                     },
                     {
-                        text: "Aplikasi utuh berjalan lancar dari depan sampai belakang.  ",
+                        text: "Aplikasi utuh berjalan lancar",
                         score: { Fullstack: 1 },
                     },
                 ],
@@ -207,14 +207,14 @@ export const quizData: Record<
         title: "Digital Marketing",
         questions: [
             {
-                question: "1. Kamu lebih suka mempelajari:",
+                question: "Kamu lebih suka mempelajari?",
                 options: [
                     {
-                        text: "SEO, social media ads, dan perilaku konsumen online.",
+                        text: "SEO, social media ads, dll",
                         score: { DigitalMarketing: 1 },
                     },
                     {
-                        text: "Coding, sistem jaringan, atau manajemen proyek teknis",
+                        text: "Coding, sistem jaringan, dll",
                         score: {},
                     },
                 ],

@@ -38,13 +38,19 @@ export default function RoleDetailPage() {
     };
 
     const question = quiz.questions[step];
+    const handleBackClick = () => {
+        if (step > 0) {
+            setStep(step - 1);
+        }
+    };
+    
 
     return (
-        <div className="min-h-screen flex items-center justify-center p-4">
+        <div className="min-h-screen flex items-center justify-center p-6">
             <div className="max-w-xl w-full">
-                <h1 className="text-xl font-bold mb-4">{quiz.title}</h1>
-                <h2 className="text-lg mb-2">{question.question}</h2>
-                <div className="space-y-3">
+                
+                <h2 className="text-xl font-semibold mb-2 text-center">{question.question}</h2>
+                <div className="space-y-3 py-10">
                     {question.options.map((option, idx) => (
                         <Button
                             key={idx}
@@ -56,9 +62,30 @@ export default function RoleDetailPage() {
                         </Button>
                     ))}
                 </div>
-                <p className="text-right text-sm text-muted mt-4">
+                <div className="flex justify-end items-center">
+                    {step > 0 && (
+                        <Button
+                            onClick={handleBackClick}
+                            variant="ghost"
+                            className=""
+                        >
+                            <svg
+                                xmlns="http://www.w3.org/2000/svg"
+                                width="1em"
+                                height="1em"
+                                viewBox="0 0 24 24"
+                            >
+                                <path
+                                    fill="currentColor"
+                                    d="m7.825 13l5.6 5.6L12 20l-8-8l8-8l1.425 1.4l-5.6 5.6H20v2z"
+                                />
+                            </svg>
+                        </Button>
+                    )}
+                <p className="text-right text-sm  text-black">
                     {step + 1} / {quiz.questions.length}
                 </p>
+                </div>
             </div>
         </div>
     );

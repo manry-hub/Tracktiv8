@@ -4,6 +4,7 @@ import AuthGuard from "@/components/auth/auth-guard";
 import { Button } from "@/components/ui/button";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const traits = [
     {
@@ -46,7 +47,7 @@ export default function QuizPage() {
 
     const handleSubmit = () => {
         if (!name || !status || selectedTraits.length < 5) {
-            alert("Lengkapi data diri dan pilih minimal 5 karakteristik.");
+            toast.error("Lengkapi data diri dan pilih minimal 5 karakteristik.");
             return;
         }
 
@@ -85,7 +86,7 @@ export default function QuizPage() {
                 
                 {/* Form Data Diri */}
                 <div className="text-center">
-                    <h1 className="text-xl font-bold mb-2">
+                    <h1 className="text-xl font-bold bg-gradient-to-r from-yellow-500 to-orange-500 bg-clip-text text-transparent mb-2">
                         Pilih karakteristik yang menggambarkan dirimu
                     </h1>
                     <p className="text-sm text-gray-500 max-w-lg mx-auto">
@@ -120,7 +121,6 @@ export default function QuizPage() {
                     </select>
                 </div>
 
-
                 <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-5">
                     {traits.map((trait) => (
                         <Button
@@ -131,7 +131,6 @@ export default function QuizPage() {
                                     ? "destructive"
                                     : "outline"
                             }
-                            
                         >
                             {trait.name}
                         </Button>

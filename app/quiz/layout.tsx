@@ -1,4 +1,5 @@
 import { QuizProvider } from "@/contexts/quizContext";
+import { Toaster } from "@/components/ui/sonner";
 
 export default function QuizLayout({
     children,
@@ -10,6 +11,7 @@ export default function QuizLayout({
             <div className="">
                 {/* Progress bar bisa di sini */}
                 {children}
+                <Toaster />
             </div>
         </QuizProvider>
     );
