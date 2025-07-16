@@ -1,5 +1,6 @@
 import type React from "react";
 import type { Metadata } from "next";
+import GraniteChatWidget from "@/components/GraniteChatWidget";
 
 import "./globals.css";
 import { AuthProvider } from "@/contexts/auth-context";
@@ -21,6 +22,9 @@ export default function RootLayout({
                 <AuthProvider>
                     <Navbar />
                     <main className="container mx-auto ">{children}</main>
+
+                    {/* Widget Granite AI */}
+                    <GraniteChatWidget />
                 </AuthProvider>
             </body>
         </html>
