@@ -59,6 +59,8 @@ Tracktiv8 features an integrated AI assistant powered by Replicate's Granite mod
 -   **Replicate API** (for AI features)
 -   **Radix UI** (UI primitives)
 
+![Banner](app/assets/pendekatan.png)
+
 ## Getting Started
 
 ### Prerequisites
