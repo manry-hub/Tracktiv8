@@ -1,3 +1,4 @@
+import Link from "next/link";
 export default function Benefits() {
     return (
         <section id="benefits" className="py-16 px-4 sm:px-6 lg:px-8">
@@ -8,9 +9,9 @@ export default function Benefits() {
                             Mengapa Memilih Tracktiv8?
                         </h2>
                         <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                            Platform kami menyediakan semua yang kamu butuhkan
-                            untuk mengidentifikasi dan menjembatani kesenjangan
-                            keterampilan secara efektif.
+                            Tracktiv8 adalah platform lengkap untuk membantumu
+                            mengidentifikasi, memahami, dan mengatasi
+                            kesenjangan keterampilan secara efisien dan terarah.
                         </p>
                     </div>
 
@@ -41,11 +42,8 @@ export default function Benefits() {
                                         Analisis Komprehensif
                                     </h3>
                                     <p className="text-gray-600">
-                                        Dapatkan wawasan mendalam tentang
-                                        keterampilan kamu saat ini dan
-                                        identifikasi area yang perlu
-                                        ditingkatkan dengan alat penilaian
-                                        canggih kami.
+                                        Raih pemahaman menyeluruh tentang
+                                        kemampuan yang kamu miliki saat ini
                                     </p>
                                 </div>
                             </div>
@@ -75,10 +73,9 @@ export default function Benefits() {
                                         Rekomendasi yang Dipersonalisasi
                                     </h3>
                                     <p className="text-gray-600">
-                                        Dapatkan jalur pembelajaran dan
-                                        rekomendasi kursus yang disesuaikan
-                                        berdasarkan kesenjangan keterampilan dan
-                                        tujuan karier kamu.
+                                        Dapatkan saran jalur belajar dan kursus
+                                        yang dirancang khusus berdasarkan tujuan
+                                        karier pribadimu.
                                     </p>
                                 </div>
                             </div>
@@ -105,12 +102,13 @@ export default function Benefits() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                        Pelacakan Kemajuan Secara Real-time
+                                        Visualisasi Dashboard
                                     </h3>
                                     <p className="text-gray-600">
-                                        Pantau perjalanan pengembangan
-                                        keterampilanmu dengan dashboard
-                                        interaktif dan fitur pelacakan kemajuan.
+                                        Lacak perkembanganmu secara langsung
+                                        melalui dashboard interaktif yang
+                                        memvisualisasikan kemajuan dan hasil
+                                        analisis secara dinamis.
                                     </p>
                                 </div>
                             </div>
@@ -137,13 +135,14 @@ export default function Benefits() {
                                 </div>
                                 <div>
                                     <h3 className="text-xl font-bold text-gray-900 mb-2">
-                                        Wawasan dari Ahli Industri
+                                        Insight dari Profesional Industri
                                     </h3>
                                     <p className="text-gray-600">
-                                        Akses wawasan dari para profesional
-                                        industri dan tetap up-to-date dengan
-                                        kebutuhan keterampilan terbaru di
-                                        bidangmu.
+                                        Dapatkan pandangan dan pembaruan
+                                        langsung dari para ahli industri agar
+                                        kamu selalu selangkah lebih maju dalam
+                                        menghadapi tren dan kebutuhan dunia
+                                        kerja terkini.
                                     </p>
                                 </div>
                             </div>
@@ -170,12 +169,14 @@ export default function Benefits() {
                             </h3>
                             <p className="text-gray-600 mb-6">
                                 Bergabunglah dengan ribuan profesional yang
-                                telah berhasil menjembatani kesenjangan
-                                keterampilan mereka bersama Tracktiv8.
+                                telah berhasil memilih course yang tepat mereka
+                                bersama Tracktiv8.
                             </p>
-                            <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
-                                Mulai Sekarang Gratis
-                            </button>
+                            <Link href="/quiz">
+                                <button className="bg-gradient-to-r from-yellow-500 to-orange-500 text-white px-8 py-3 rounded-full font-semibold hover:shadow-lg transition-all duration-300">
+                                    Mulai Sekarang Gratis
+                                </button>
+                            </Link>
                         </div>
                     </div>
                 </div>

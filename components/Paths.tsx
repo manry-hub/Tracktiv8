@@ -8,7 +8,7 @@ export default function Paths() {
                         Jelajahi Jalur Kariermu
                     </h2>
                     <p className="text-xl text-gray-600 max-w-2xl mx-auto">
-                        Pilih dari berbagai industri dan peran untuk mendapatkan
+                        Pilih dari berbagai fields dan role untuk mendapatkan
                         analisis kesenjangan keterampilan yang dipersonalisasi
                     </p>
                 </div>

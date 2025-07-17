@@ -17,7 +17,7 @@ export default function Header() {
                             </span>
                         </h1>
                         <p className="text-xl sm:text-2xl text-gray-600 mb-8 max-w-3xl mx-auto">
-                            Analisis dan temukan keterampilan dengan alat
+                            Analisis dan temukan course yang tepat dengan alat
                             analisis komprehensif kami. Bootcamp Hacktiv8 hadir
                             untuk mendorong pertumbuhan karier Anda
                         </p>

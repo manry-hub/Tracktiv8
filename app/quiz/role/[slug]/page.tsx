@@ -28,7 +28,6 @@ export default function RoleDetailPage() {
         if (nextStep < quiz.questions.length) {
             setStep(nextStep);
         } else {
-            
             localStorage.setItem(
                 `role_result_${slug}`,
                 JSON.stringify(newScores)
@@ -43,13 +42,13 @@ export default function RoleDetailPage() {
             setStep(step - 1);
         }
     };
-    
 
     return (
         <div className="min-h-screen flex items-center justify-center p-6">
-            <div className="max-w-xl w-full" data-aos="fade-left">
-                
-                <h2 className="text-xl font-semibold mb-2 text-center">{question.question}</h2>
+            <div className="max-w-xl w-full" data-aos="fade-down">
+                <h2 className="text-xl font-semibold mb-2 text-center">
+                    {question.question}
+                </h2>
                 <div className="space-y-3 py-10">
                     {question.options.map((option, idx) => (
                         <Button
@@ -82,9 +81,9 @@ export default function RoleDetailPage() {
                             </svg>
                         </Button>
                     )}
-                <p className="text-right text-sm  text-black">
-                    {step + 1} / {quiz.questions.length}
-                </p>
+                    <p className="text-right text-sm  text-black">
+                        {step + 1} / {quiz.questions.length}
+                    </p>
                 </div>
             </div>
         </div>
