@@ -11,23 +11,37 @@ Tracktiv8 is a platform designed to help users identify and bridge their skill g
 
 -   **Career Track Recommendation:**  
     Users can take a quiz to receive recommended career tracks (e.g., Fullstack JavaScript, Backend GoLang, Frontend React, Data Science, Data Analytics, Digital Marketing).
-
 -   **Course Suggestions:**  
     The system provides direct course links from Hacktiv8 based on the user's selected or recommended career path.
-
 -   **Authentication:**  
     Sign-up and sign-in using Firebase Authentication.
-
 -   **Modern UI:**  
     Uses Next.js (App Router), TailwindCSS, and several custom UI components for a modern, responsive experience.
-
 -   **AI Chat Widget:**  
     Integrated GraniteChatWidget for user support and additional AI-powered assistance.
+-   **Personalized Recommendations:**  
+    The platform adapts course and track suggestions based on quiz responses and user profile.
+-   **Responsive Design:**  
+    Fully mobile-friendly and accessible layout.
+-   **Progress Tracking:**  
+    (Planned) Users will be able to track their progress through recommended tracks and courses.
+
+## AI Support
+
+Tracktiv8 features an integrated AI assistant powered by Replicate's Granite model. This AI is available through the GraniteChatWidget, providing:
+
+-   **Instant Q&A:**  
+    Users can ask questions about courses, career paths, and the platform itself, and receive instant, context-aware answers.
+-   **Course and Track Guidance:**  
+    The AI can recommend tracks and courses based on user queries, supplementing the quiz system.
+-   **Onboarding Help:**  
+    New users can interact with the AI widget for step-by-step guidance through the signup and quiz process.
+-   **Continuous Learning:**  
+    The AI model can be updated to support new courses, recommendations, or answer frequently asked questions.
 
 ## Why Choose Tracktiv8?
 
-> _"Platform kami menyediakan semua yang kamu butuhkan untuk mengidentifikasi dan menjembatani kesenjangan keterampilan secara efektif."_  
-> ("Our platform provides everything you need to identify and bridge skill gaps effectively.")
+> _"Our platform provides everything you need to identify and bridge skill gaps effectively."_
 
 ## Getting Started
 
