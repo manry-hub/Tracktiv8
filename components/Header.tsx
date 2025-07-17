@@ -1,5 +1,9 @@
 import Link from "next/link";
+import YoutubeEmbed from "./YoutubeEmbed";
+import { useState } from "react";
+
 export default function Header() {
+    const [showVideo, setShowVideo] = useState(false);
     return (
         <section
             data-aos="fade-up"
@@ -27,13 +31,21 @@ export default function Header() {
                                     Start Quiz
                                 </button>
                             </Link>
-                            <button className="glassmorphism-light text-gray-700 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg transition-all duration-300">
+                            <button
+                                onClick={() => setShowVideo(!showVideo)}
+                                className="glassmorphism-light text-gray-700 px-8 py-4 rounded-full text-lg font-semibold hover:shadow-lg transition-all duration-300"
+                            >
                                 Watch Demo
                             </button>
                         </div>
                     </div>
                 </div>
             </div>
+            {showVideo && (
+                <div className="mt-8 max-w-6xl mx-auto">
+                    <YoutubeEmbed />
+                </div>
+            )}
         </section>
     );
 }
