@@ -101,6 +101,6 @@ npm run dev
 pnpm dev
 ```
 
-Navigate to [http://localhost:3000](http://localhost:3000) in your browser.
+Navigate to [http://localhost:3000](http://localhost:3000) in your browser
 
 © 2025 Tracktiv8 by [manry-hub](https://github.com/manry-hub)

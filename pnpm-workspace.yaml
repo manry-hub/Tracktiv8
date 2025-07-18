@@ -1,4 +1,5 @@
 onlyBuiltDependencies:
-  - '@firebase/util'
-  - protobufjs
-  - sharp
+    - "@firebase/util"
+    - protobufjs
+    - sharp
+# complete
